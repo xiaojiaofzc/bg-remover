@@ -1,0 +1,22 @@
+{
+  "name": "bg-remover",
+  "version": "1.0.0",
+  "description": "Image Background Remover - Remove image backgrounds with AI",
+  "main": "src/worker.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": [
+    "background-remover",
+    "image-processing",
+    "cloudflare-workers",
+    "remove-bg"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
