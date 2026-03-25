@@ -1,11 +1,10 @@
+# Cloudflare Pages Configuration
 name = "bg-remover"
-main = "src/worker.js"
 compatibility_date = "2024-01-01"
 
-[vars]
-# Replace with your Remove.bg API key
-REMOVE_BG_API_KEY = "your-api-key-here"
+# Build settings
+pages_build_output_dir = ".next"
 
-# Upload limits
-[upload]
-body_size_limit = 10485760  # 10MB
+# Environment variables
+[vars]
+REMOVE_BG_API_KEY = "your-api-key-here"

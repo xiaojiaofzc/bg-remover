@@ -2,7 +2,7 @@
 
 > Image Background Remover - Remove image backgrounds with AI
 
-A fast, free, and easy-to-use online tool for removing backgrounds from images. Built with Cloudflare Workers and Remove.bg API.
+A fast, free, and easy-to-use online tool for removing backgrounds from images. Built with Next.js, Tailwind CSS, and Cloudflare Workers.
 
 ## ✨ Features
 
@@ -10,14 +10,14 @@ A fast, free, and easy-to-use online tool for removing backgrounds from images. 
 - 🎯 **Accurate** - AI-powered background removal
 - 📱 **Responsive** - Works on desktop and mobile
 - 🔒 **Private** - No image storage, processed in memory
-- 🆓 **Free** - 50 free images per month
+- 🆓 **Free** - 50 free images per month with Remove.bg
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: Vanilla HTML/CSS/JS
-- **Backend**: Cloudflare Workers
+- **Framework**: Next.js 14 (App Router)
+- **Styling**: Tailwind CSS
+- **Backend**: Cloudflare Workers / Pages
 - **AI API**: Remove.bg
-- **Deployment**: Cloudflare Pages/Workers
 
 ## 🚀 Quick Start
 
@@ -38,39 +38,91 @@ cd bg-remover
 # Install dependencies
 npm install
 
-# Configure your API key
-cp wrangler.toml.example wrangler.toml
-# Edit wrangler.toml and add your Remove.bg API key
+# Copy environment file
+cp .env.example .env.local
+# Edit .env.local and add your Remove.bg API key
 
-# Deploy to Cloudflare Workers
-npx wrangler deploy
+# Run locally
+npm run dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000) to start.
 
 ### Configuration
 
-Create a `wrangler.toml` file:
+Create a `.env.local` file in the root directory:
 
-```toml
-name = "bg-remover"
-main = "src/worker.js"
-compatibility_date = "2024-01-01"
-
-[vars]
-REMOVE_BG_API_KEY = "your-api-key-here"
+```env
+REMOVE_BG_API_KEY=your-api-key-here
 ```
 
-## 📖 Documentation
+Get your API key at [https://www.remove.bg/api](https://www.remove.bg/api)
 
-- [MVP Requirements Document](./docs/MVP.md)
+## 📁 Project Structure
+
+```
+bg-remover/
+├── app/
+│   ├── api/
+│   │   └── remove-bg/
+│   │       └── route.ts      # Remove.bg API integration
+│   ├── globals.css           # Global styles
+│   ├── layout.tsx            # Root layout
+│   └── page.tsx              # Main page
+├── components/
+│   ├── DownloadButton.tsx    # Download result button
+│   ├── ErrorMessage.tsx      # Error display
+│   ├── ImagePreview.tsx      # Image preview with transparent bg
+│   ├── LoadingSpinner.tsx    # Loading animation
+│   ├── ProcessingButton.tsx  # Process image button
+│   └── UploadArea.tsx        # Drag & drop upload
+├── public/                   # Static assets
+├── .env.example              # Environment template
+├── .gitignore
+├── next.config.js            # Next.js configuration
+├── package.json
+├── postcss.config.js
+├── tailwind.config.ts
+├── tsconfig.json
+└── wrangler.toml             # Cloudflare Pages config
+```
+
+## 🌐 Deployment
+
+### Deploy to Cloudflare Pages
+
+```bash
+# Install Wrangler CLI
+npm install -g wrangler
+
+# Login to Cloudflare
+wrangler login
+
+# Build and deploy
+npm run build
+wrangler pages deploy .next
+```
+
+### Other Platforms
+
+The app can also be deployed to Vercel, Netlify, or any Node.js hosting:
+
+```bash
+npm run build
+npm start
+```
 
 ## 🧪 Local Development
 
 ```bash
-# Start local dev server
+# Start development server
 npm run dev
 
-# Or use Wrangler directly
-npx wrangler dev
+# Build for production
+npm run build
+
+# Preview production build
+npm run start
 ```
 
 ## 📄 License
@@ -80,4 +132,6 @@ MIT License - see LICENSE file for details.
 ## 🙏 Acknowledgments
 
 - [Remove.bg](https://www.remove.bg/) - Background removal API
-- [Cloudflare Workers](https://workers.cloudflare.com/) - Edge computing platform
+- [Next.js](https://nextjs.org/) - React framework
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Cloudflare](https://cloudflare.com/) - Edge computing platform
